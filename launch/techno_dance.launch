@@ -1,0 +1,9 @@
+<launch>
+
+  <node pkg="trajectory_controller_tests" type="head_random_goals.py" name="head_random_goals" />
+
+  <node pkg="trajectory_controller_tests" type="left_arm_random_goals.py" name="left_arm_random_goals" />
+
+  <node pkg="trajectory_controller_tests" type="right_arm_random_goals.py" name="right_arm_random_goals" />
+
+</launch>
