@@ -36,9 +36,58 @@ if __name__ == '__main__':
         jtp.positions = get_n_randoms(len(JOINT_NAMES), -1.0, 4.0)
         jtp.velocities = [0.0] * len(JOINT_NAMES)
         jtp.accelerations = [0.0] * len(JOINT_NAMES)
+        #jtp.effort = [0.0] * len(JOINT_NAMES)
         jtp.time_from_start = rospy.Duration(random.random() + 0.5) # 0.5s to 1.5s
         jt.points.append(jtp)
         ctl_pub.publish(jt)
         rospy.loginfo("Sent: " + str(jt))
         rospy.sleep(jtp.time_from_start)
+
+
+# rostopic pub /left_leg_controller/command trajectory_msgs/JointTrajectory "header:
+#   seq: 0
+#   stamp:
+#     secs: 0
+#     nsecs: 0
+#   frame_id: ''
+# joint_names: ['leg_left_1_joint', 'leg_left_2_joint', 'leg_left_3_joint', 'leg_left_4_joint', 'leg_left_5_joint', 'leg_left_6_joint']
+# points:
+# - positions: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+#   velocities: [0]
+#   accelerations: [0]
+#   effort: [0]                           
+#   time_from_start: {secs: 3, nsecs: 0}" 
+# GIVES: 
+#Size mismatch in trajectory point position, velocity or acceleration data.
+
+# rostopic pub /left_leg_controller/command trajectory_msgs/JointTrajectory "header:
+#   seq: 0
+#   stamp:
+#     secs: 0
+#     nsecs: 0
+#   frame_id: ''
+# joint_names: ['leg_left_1_joint', 'leg_left_2_joint', 'leg_left_3_joint', 'leg_left_4_joint', 'leg_left_5_joint', 'leg_left_6_joint']
+# points:
+# - positions: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+#   velocities: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+#   accelerations: [0]
+#   effort: [0]
+#   time_from_start: {secs: 3, nsecs: 0}"
+#   GIVES:
+#   Size mismatch in trajectory point position, velocity or acceleration data.
+
+# rostopic pub /left_leg_controller/command trajectory_msgs/JointTrajectory "header:
+#   seq: 0
+#   stamp:
+#     secs: 0
+#     nsecs: 0
+#   frame_id: ''
+# joint_names: ['leg_left_1_joint', 'leg_left_2_joint', 'leg_left_3_joint', 'leg_left_4_joint', 'leg_left_5_joint', 'leg_left_6_joint']
+# points:
+# - positions: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+#   velocities: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+#   accelerations: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+#   effort: [0]
+#   time_from_start: {secs: 3, nsecs: 0}" 
+#   GIVES: NO ERROR, BUT NOTHING HAPPENS
 
