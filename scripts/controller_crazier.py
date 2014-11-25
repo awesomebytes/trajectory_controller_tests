@@ -7,21 +7,23 @@ Created on 24/11/14
 
 
 """
-# System 
+# System imports
 import random
 import threading
 import copy
 
-# ROS
+# ROS imports
 import rospy
 # messages
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
-from controller_manager_msgs.msg import ControllerState
 # services
-from controller_manager_msgs.srv import ListControllers, ListControllersRequest, ListControllersResponse
-from control_msgs.srv import QueryTrajectoryState, QueryTrajectoryStateRequest, QueryTrajectoryStateResponse
+from controller_manager_msgs.srv import ListControllers, ListControllersRequest#, ListControllersResponse
 
-# this package
+
+# local imports
+# Borrowed from Adolfo Rodriguez Tsouroukdissian
+# at https://github.com/ros-controls/ros_controllers/blob/indigo-devel/rqt_joint_trajectory_controller/src/rqt_joint_trajectory_controller/joint_limits_urdf.py
+# as the urdf_dom_py interface gives errors
 from joint_limits_urdf import get_joint_limits
 
 CONTROLLER_MNGR_SRV = "/controller_manager/list_controllers"
@@ -57,7 +59,7 @@ def spam_controller(controller_name, joint_names):
         jtp.time_from_start = rospy.Duration(random.random() + 0.5) # 0.5s to 1.5s
         jt.points.append(jtp)
         ctl_pub.publish(jt)
-        rospy.logdebug("Sent: " + str(jt))
+        rospy.logdebug("Sent to: " + cmd_topic + "\n" + str(jt))
         rospy.sleep(jtp.time_from_start)
 
 if __name__ == '__main__':
