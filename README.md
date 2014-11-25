@@ -32,3 +32,21 @@ And, after it loads, you can just launch the node:
 
 	rosrun trajectory_controller_tests controller_crazier.py
 
+====
+
+Try it also with PR2!:
+
+Video: https://www.youtube.com/watch?v=TgIfXh6dexc
+
+You'll need:
+
+	sudo apt-get install ros-hydro-pr2-gazebo
+
+Then:
+
+	roslaunch pr2_gazebo pr2_empty_world.launch
+
+And, after it loads, launch the hacky node:
+	
+	rosrun trajectory_controller_tests pr2_controller_crazier.py
+
